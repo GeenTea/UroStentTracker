@@ -8,7 +8,7 @@ import MainMenu from './pages/main-menu/main-menu.jsx'
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
       <Routes>
-          <Route path="/login"  element={<Login />} />
+          <Route path="/"  element={<Login />} />
           <Route path="/main-menu" element={<MainMenu />} />
       </Routes>
   </BrowserRouter>

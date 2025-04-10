@@ -1,10 +1,12 @@
 import './style.css';
+import Header from '/src/components/Header/header.jsx'
+import Mainn from '/src/components/main-for-main-menu/mainn.jsx';
 
 const MainMenu= () => {
     return (
         <div>
-            <h1>Main Menu</h1>
-            <p>Welcome to the main menu!</p>
+            <Header/>
+            <Mainn/>
         </div>
     );
 }
