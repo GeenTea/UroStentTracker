@@ -17,7 +17,7 @@ const Header = () => {
                     setUsername(response.data.user.username);
                 } else {
                     console.error("Error fetching username:", response.data.message);
-                    redirect('/login');
+                    navigate('/');
                 }
             } catch (error) {
                 console.error("Error fetching username:", error);
@@ -25,6 +25,20 @@ const Header = () => {
         }
         fetchUsername();
     }, [navigate])
+
+    const logout=()=>{
+        axios.post('http://localhost:3000/logout')
+            .then(response => {
+                if (response.data.status === "success") {
+                    navigate('/');
+                } else {
+                    console.error("Error logging out:", response.data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error logging out:", error);
+            });
+    }
 
     const hideMenu = () => {
         const menu = document.getElementById('list-menu');
@@ -40,7 +54,7 @@ const Header = () => {
             <h1>UroStentTracker</h1>
             <div id="exit-menu">
                 <p id='users' onClick={hideMenu}>{username}</p>
-                <p><Link to={'/'} id="list-menu">Exit</Link></p>
+                <p><Link to={'/'} id="list-menu" onClick={logout}>Exit</Link></p>
             </div>
 
         </header>
