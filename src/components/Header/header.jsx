@@ -1,6 +1,6 @@
 import './style.css'
 import React, {useEffect, useState} from 'react';
-import {Link, redirect, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
