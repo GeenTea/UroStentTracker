@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jacques+Francois&family=Montserrat:ital,wght@0,301;1,301&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+p{
+
+    user-select: none;
+    color: #000000;
+}
+header{
+    height: 125px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 15px 15px;
+    background-color: #2a7fba;
+}
+header h1{
+    position: absolute;
+    left: 40vw;
+    margin-top: 25px;
+    user-select: none;
+}
+#users{
+    position: absolute;
+    left: 90vw;
+    margin-top: 50px;
+    text-align: center;
+}
+#users:hover{
+    cursor: pointer;
+}
+#exit-menu {
+    position: relative;
+
+}
+#list-menu{
+    visibility: hidden;
+    position: absolute;
+    left: 90vw;
+    margin-top: 90px;
+    text-decoration: none;
+    color: #000000;
+}

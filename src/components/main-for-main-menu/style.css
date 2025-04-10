@@ -1,0 +1,23 @@
+main{
+    margin-top: 50px;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+#search-bar{
+    margin-bottom: 20px;
+}
+#add_btn button{
+    width: 200px;
+    height: 50px;
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
+#add_btn button:hover{
+    background-color: #ffffff;
+    color: white;
+}
