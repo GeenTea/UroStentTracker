@@ -17,7 +17,8 @@ header{
     justify-content: space-between;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
     border-radius: 0 0 15px 15px;
-    background-color: #2a7fba;
+    /*background-color: #2a7fba;*/
+    background-color: white;
 }
 header h1{
     position: absolute;

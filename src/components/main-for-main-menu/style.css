@@ -22,3 +22,6 @@ main{
     position: relative;
     bottom: 2px;
 }
+.th-center{
+    text-align: center;
+}

@@ -2,38 +2,28 @@ import './style.css';
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import {Link} from "react-router-dom";
 
 const Mainn = () => {
-
-    const [hostpitalNumber, setHostpitalNumber] = useState([]);
-    const [firstName, setFirstName] = useState([]);
-    const [lastName, setLastName] = useState([]);
-    const [consultantName, setConsultantName] = useState([]);
-    const [insertionDate, setInsertionDate] = useState([]);
-    const [removeDate, setRemoveDate] = useState([]);
-
+    const [patients, setPatients] = useState([]);
     const navigate = useNavigate();
 
-   const patientList = [
-       {
-           patient_id: hostpitalNumber,
-           patient_name: firstName + " " + lastName,
-           consultant_name: consultantName,
-           insertion_date: insertionDate,
-           remove_date: removeDate
-       }
-   ];
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/patient');
 
-    const itemList  = patientList.map(patient =>
-        <tr>
-            <td>{patient.patient_id}</td>
-            <td>{patient.patient_name}</td>
-            <td>{patient.consultant_name}</td>
-            <td>{patient.insertion_date}</td>
-            <td>{patient.remove_date}</td>
-        </tr>
-    );
+                console.log("Respone:", response.data);
+                setPatients(response.data);
+            } catch (error) {
+                console.error('Full error:', error);
+                if (error.response) {
+                    console.error('Server responded with:', error.response.status);
+                }
+            }
+        };
+
+        fetchData();
+    }, []); // пустой массив зависимостей - запрос выполнится только при монтировании
 
     return(
         <div>
@@ -59,20 +49,38 @@ const Mainn = () => {
                 <div id="table">
                     <table className="table table-bordered table-striped">
                         <thead>
-                            <tr>
-                                <th>Hospital Number</th>
-                                <th>Patient Name</th>
-                                <th>Consultant Name</th>
-                                <th>Insertion Date</th>
-                                <th>Remove Date</th>
-                            </tr>
+                        <tr>
+                            <th className="th-center">Hospital Number</th>
+                            <th className="th-center">Patient Name</th>
+                            <th className="th-center">Consultant Name</th>
+                            <th className="th-center">Insertion Date</th>
+                            <th className="th-center">Remove Date</th>
+                            <th colSpan="2" className="th-center">Action</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {itemList}
+                        {patients.map(patient => (
+                            <tr key={patient.hospital_number}>
+                                <td>{patient.hospital_number}</td>
+                                <td>{patient.fname} {patient.lname}</td>
+                                <td>{patient.consultant_name}</td>
+                                <td>{patient.stent_insertion_date}</td>
+                                <td>{patient.scheduled_removal_date}</td>
+                                <td>
+                                    <button className="btn btn-primary" onClick={() => navigate("/edit-patient", { state: { patient } })}>
+                                        Edit
+                                    </button>
+                                </td>
+                                <td>
+                                    <buttton className="btn btn-danger">
+                                        DELETE
+                                    </buttton>
+                                </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                 </div>
-
             </main>
         </div>
     )

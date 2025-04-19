@@ -1,6 +1,9 @@
 .card-add-patient {
     width: 500px;
     margin: 20vh auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
 }
 
 .card {
