@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const Mainn = () => {
     const [patients, setPatients] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,6 +26,24 @@ const Mainn = () => {
         fetchData();
     }, []); // пустой массив зависимостей - запрос выполнится только при монтировании
 
+    const handleDelete = async (patientId) => {
+        try {
+            await axios.delete(`http://localhost:3000/delete-patient/${patientId}`);
+            setPatients(patients.filter(patient => patient.patient_id !== patientId));
+        } catch (error) {
+            console.error('Error deleting patient:', error);
+        }
+    }
+
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const filteredPatients = patients.filter(patient =>
+        `${patient.fname} ${patient.lname}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        patient.hospital_number.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return(
         <div>
             <main>
@@ -39,7 +58,7 @@ const Mainn = () => {
                         <div className="row justify-content-center">
                             <div className="col-md-6 w-100 p-0">
                                 <div className="search-container">
-                                    <input type="text" className="form-control search-input" placeholder="Search..."/>
+                                    <input type="text" className="form-control search-input" placeholder="Search..." value={searchQuery} onChange={handleSearchChange} />
                                     <i className="fas fa-search search-icon"></i>
                                 </div>
                             </div>
@@ -59,8 +78,8 @@ const Mainn = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {patients.map(patient => (
-                            <tr key={patient.hospital_number}>
+                        {filteredPatients.map(patient => (
+                            <tr key={patient.patient_id}>
                                 <td>{patient.hospital_number}</td>
                                 <td>{patient.fname} {patient.lname}</td>
                                 <td>{patient.consultant_name}</td>
@@ -72,9 +91,9 @@ const Mainn = () => {
                                     </button>
                                 </td>
                                 <td>
-                                    <buttton className="btn btn-danger">
+                                    <button className="btn btn-danger" onClick={() => handleDelete(patient.patient_id)}>
                                         DELETE
-                                    </buttton>
+                                    </button>
                                 </td>
                             </tr>
                         ))}
