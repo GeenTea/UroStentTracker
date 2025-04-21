@@ -15,16 +15,20 @@ const Header = () => {
                 const response = await axios.post('http://localhost:3000/main-menu');
                 if (response.data.status === "success") {
                     setUsername(response.data.user.username);
-                } else {
+                }
+                else {
                     console.error("Error fetching username:", response.data.message);
                     navigate('/');
                 }
             } catch (error) {
                 console.error("Error fetching username:", error);
+                navigate('/');
             }
         }
         fetchUsername();
-    }, [navigate])
+    }, [navigate, username])
+
+
 
     const logout=()=>{
         axios.post('http://localhost:3000/logout')
