@@ -25,3 +25,21 @@ main{
 .th-center{
     text-align: center;
 }
+#notifications {
+    position: relative;
+    display: inline-block;
+    right: 90%;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 8px;
+    font-size: 12px;
+}

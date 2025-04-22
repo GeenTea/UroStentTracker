@@ -24,7 +24,27 @@ const Mainn = () => {
         };
 
         fetchData();
-    }, []); // пустой массив зависимостей - запрос выполнится только при монтировании
+    }, []);
+
+    const formatDate = (dateString) => {
+        if (!dateString) return 'N/A';
+
+
+        const fixedDateString = dateString.replace('T2I:', 'T21:');
+
+        try {
+            const date = new Date(fixedDateString);
+            return date.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        } catch (e) {
+            console.error('Error formatting date:', e);
+            return dateString;
+        }
+    };
+
 
     const handleDelete = async (patientId) => {
         try {
@@ -83,8 +103,8 @@ const Mainn = () => {
                                 <td>{patient.hospital_number}</td>
                                 <td>{patient.fname} {patient.lname}</td>
                                 <td>{patient.consultant_name}</td>
-                                <td>{patient.stent_insertion_date}</td>
-                                <td>{patient.scheduled_removal_date}</td>
+                                <td>{formatDate(patient.stent_insertion_date)}</td>
+                                <td>{formatDate(patient.scheduled_removal_date)}</td>
                                 <td>
                                     <button className="btn btn-primary" onClick={() => navigate("/edit-patient", { state: { patient } })}>
                                         Edit

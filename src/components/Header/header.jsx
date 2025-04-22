@@ -7,6 +7,7 @@ axios.defaults.withCredentials = true;
 
 const Header = () => {
     const [username, setUsername] = useState('user')
+    const [notifications, setNotifications] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,7 +26,24 @@ const Header = () => {
                 navigate('/');
             }
         }
+        const fetchNotifications = async () => {
+            try{
+                const response = await axios.get('http://localhost:3000/patient');
+                const today = new Date().toISOString().split('T')[0];
+                const dueToday = response.data.filter(patient => {
+                    const scheduledDate = new Date(patient.scheduled_removal_date);
+                    return scheduledDate <= new Date(today);
+                });
+                setNotifications(dueToday.length);
+
+            }catch(error){
+                console.error("Error fetching notifications:", error);
+            }
+        }
+
         fetchUsername();
+
+        fetchNotifications()
     }, [navigate, username])
 
 
@@ -56,9 +74,14 @@ const Header = () => {
     return (
         <header>
             <h1>UroStentTracker</h1>
+
             <div id="exit-menu">
                 <p id='users' onClick={hideMenu}>{username}</p>
                 <p><Link to={'/'} id="list-menu" onClick={logout}>Exit</Link></p>
+            </div>
+            <div id="notifications">
+                <i className="fas fa-bell fa-2x"></i>
+                {notifications > 0 && <span className="notification-count">{notifications}</span>}
             </div>
 
         </header>
