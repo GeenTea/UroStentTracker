@@ -68,3 +68,23 @@ The application interacts with the server through the following endpoints:
 ## Authors
 
 This project was developed to manage patients with urological stents.
+
+## Photos
+
+- login page
+![image](https://github.com/user-attachments/assets/1ad18a92-8e4a-4b7c-a6d0-83dad3f69af8)
+- main page
+![image](https://github.com/user-attachments/assets/aa5fa119-700f-4323-85c9-2b215576211b)
+- add patients
+![image](https://github.com/user-attachments/assets/674e82c4-d892-4702-8600-a0945b487138)
+- edit patients
+![image](https://github.com/user-attachments/assets/57348402-ab69-4f08-8552-0c97a7b96fa7)
+- search patients
+![image](https://github.com/user-attachments/assets/dda2c590-d16c-4610-82ae-15e4ad499164)
+- error page
+![image](https://github.com/user-attachments/assets/290ac97d-626f-48c5-b4ae-0b1cbb766535)
+
+
+
+
+
