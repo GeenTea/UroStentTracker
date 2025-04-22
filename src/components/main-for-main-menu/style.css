@@ -27,8 +27,7 @@ main{
 }
 #notifications {
     position: relative;
-    display: inline-block;
-    right: 90%;
+    margin-left: 8em;
     margin-top: 50px;
     cursor: pointer;
 }
